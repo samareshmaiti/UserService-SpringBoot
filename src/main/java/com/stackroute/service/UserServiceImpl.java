@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    UserRepository userRepository;
+   private UserRepository userRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository1)
@@ -23,6 +23,12 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
         User saveUser1= userRepository.save(user);
         return saveUser1;
+    }
+
+    @Override
+    public User getUserById(int  id) {
+      User retrivedUser= userRepository.findById(id).get();
+      return retrivedUser;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value="api/v1/")
 public class UserController {
-    UserService userService;
+   private UserService userService;
 
     @Autowired
     public UserController(UserService userService1)
@@ -37,7 +37,11 @@ public class UserController {
         return responseEntity;
     }
 
-
+    public ResponseEntity<?> getUser(@PathVariable int id)
+    {
+       User retriveUser=userService.getUserById(id);
+       return new ResponseEntity<>(retriveUser,HttpStatus.OK);
+    }
     @GetMapping("user")
     public ResponseEntity<?> getAllUsers()
     {
